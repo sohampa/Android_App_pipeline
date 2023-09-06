@@ -18,8 +18,8 @@ pipeline {
         }
          stage('Build'){
             steps{
-                echo "SonarQube"
-                bat "gradlew build"
+                echo "Build"
+                bat "gradlew clean build"
             }
         }
 }
