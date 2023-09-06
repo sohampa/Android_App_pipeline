@@ -4,9 +4,7 @@ pipeline {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
         }
-    agent {
-        label 'Soham-Node'
-    }
+    agent any
     tools {
         gradle "gradle"
         jdk "jdk-17"
