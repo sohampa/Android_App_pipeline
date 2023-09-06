@@ -5,7 +5,7 @@ pipeline {
         TAG = "${DATE}.${BUILD_NUMBER}"
         }
     tools {
-        gradlew "gradle"
+        gradle "gradle"
         jdk "jdk-17"
     }
     agent any
@@ -13,7 +13,7 @@ pipeline {
         stage('SonarQube Analysis'){
             steps{
                 echo "SonarQube"
-                gradlew sonarqube
+                bat gradlew sonarqube
             }
         }
 }
