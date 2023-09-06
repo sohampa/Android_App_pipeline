@@ -13,7 +13,7 @@ pipeline {
         stage('SonarQube Analysis'){
             steps{
                 echo "SonarQube"
-                bat gradle sonarqube
+                bat "gradle sonarqube"
             }
         }
 }
