@@ -44,7 +44,7 @@ pipeline {
 //            steps{
 //                echo 'Pakage'
 //                sh 'mvn clean package'   
-            }
+            // }
         }
 
 }
