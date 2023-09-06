@@ -4,7 +4,7 @@ pipeline {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
         }
-    agent any
+    agent 'Built-In Node'
     tools {
         gradlew "gradle"
         jdk "jdk-17"
