@@ -10,9 +10,10 @@ pipeline {
         jdk "jdk-17"
     }
     stages {
-        stage('validate'){
+        stage('SonarQube Analysis'){
             steps{
-                echo "VALIDATE"
+                echo "SonarQube"
+                gradlew sonarqube
             }
         }
 }
