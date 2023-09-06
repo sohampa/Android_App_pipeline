@@ -22,5 +22,22 @@ pipeline {
                 bat "gradlew clean build"
             }
         }
+        stage('Upload_Artifact') {
+            steps {
+                script{
+               def server = Artifactory.server 'artifactory'
+
+                def uploadSpec = """{
+                  "files": [
+                    {
+                      "pattern": "app/build/outputs/apk/release/*.apk",
+                      "target": "Soham-APK/"
+                    }
+                 ]
+                }"""
+                server.upload(uploadSpec) 
+            }
+            }
+        }
 }
 }
