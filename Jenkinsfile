@@ -24,15 +24,15 @@ pipeline {
 //            steps{
 //                echo "COMPILE"
 //                sh "mvn clean compile"
-            }
-        }
+            // }
+
 
 //        stage('test'){
 //            steps{
 //                echo "Test"
 //                sh "mvn clean test"
-            }
-        }
+        //     }
+        // }
 //         stage('Sonar Analysis') {
 //             steps {
 //                 sh 'mvn clean install'
@@ -44,8 +44,6 @@ pipeline {
 //            steps{
 //                echo 'Pakage'
 //                sh 'mvn clean package'   
-            // }
-        }
-
+        //     }
+        // }
 }
-                         }
