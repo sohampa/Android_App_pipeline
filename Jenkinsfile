@@ -8,7 +8,7 @@ pipeline {
         gradlew "gradle"
         jdk "jdk-17"
     }
-    agent None
+    agent none
     stages {
         stage('SonarQube Analysis'){
             steps{
