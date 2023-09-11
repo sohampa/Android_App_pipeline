@@ -12,8 +12,10 @@ pipeline {
     stages {
         stage('SonarQube Analysis'){
             steps{
-                echo "SonarQube"
-                bat "gradlew sonarqube"
+                echo "SonarQube"                
+                withSonarQubeEnv('SonarQubeServer') {
+                    bat "gradlew sonarqube"
+              }
             }
         }
         stage('Quality Gate') {
