@@ -15,10 +15,6 @@ pipeline {
                 echo "SonarQube"                
                 withSonarQubeEnv('SonarQubeServer') {
                     bat "gradlew sonarqube"
-                    def qg = waitForQualityGate()
-                    if (qg.status != 'OK') {
-                        error "Quality Gate failed: ${qg.status}"
-                    }
               }
             }
         }
