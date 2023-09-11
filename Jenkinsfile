@@ -16,10 +16,6 @@ pipeline {
                 withSonarQubeEnv('SonarQubeServer') {
                     bat "gradlew sonarqube"
               }
-            }
-        }
-        stage('Quality Gate') {
-            steps {
                 script {
                     // Check the quality gate status
                     def qg = waitForQualityGate()
