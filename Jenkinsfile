@@ -15,14 +15,11 @@ pipeline {
                 echo "SonarQube"                
                 withSonarQubeEnv('SonarQubeServer') {
                     bat "gradlew sonarqube"
-              }
-                script {
-                    // Check the quality gate status
                     def qg = waitForQualityGate()
                     if (qg.status != 'OK') {
                         error "Quality Gate failed: ${qg.status}"
                     }
-                }
+              }
             }
         }
          stage('Build'){
