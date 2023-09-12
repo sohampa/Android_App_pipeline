@@ -24,11 +24,11 @@ pipeline {
             //     waitForQualityGate abortPipeline: true }
                 
                  script {
-                        echo "test2"
+                        echo "Checking Quality Gates"
                         def qg = waitForQualityGate()
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                            echo "test3" 
+                            echo "Quality Gate status updated" 
                         }
                 }
             }
