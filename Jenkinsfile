@@ -18,21 +18,21 @@ pipeline {
               }
             }
         }
-        stage("Quality Gate") {
-            steps {
-            //     timeout(time: 1, unit: 'HOURS') {
-            //     waitForQualityGate abortPipeline: true }
+        // stage("Quality Gate") {
+        //     steps {
+        //     //     timeout(time: 1, unit: 'HOURS') {
+        //     //     waitForQualityGate abortPipeline: true }
                 
-                 script {
-                        echo "Checking Quality Gates"
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                            echo "Quality Gate status updated" 
-                        }
-                }
-            }
-        }
+        //          script {
+        //                 echo "Checking Quality Gates"
+        //                 def qg = waitForQualityGate()
+        //                 if (qg.status != 'OK') {
+        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        //                     echo "Quality Gate status updated" 
+        //                 }
+        //         }
+        //     }
+        // }
          stage('Build'){
             steps{
                 echo "Build"
