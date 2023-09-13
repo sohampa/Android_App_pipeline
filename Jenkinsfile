@@ -62,7 +62,7 @@ pipeline {
             slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: "${custom_success_msg()}")
         }
         failure{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Build Successful")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "${custom_fail_msg()}")
         }
     }
 }
@@ -73,6 +73,16 @@ def custom_success_msg()
   def BUILD_ID= env.BUILD_ID
 
   def JENKINS_LOG= " Success: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
+  return JENKINS_LOG
+
+}
+def custom_fail_msg()
+{
+  def JENKINS_URL= "http://172.27.59.109:8080/"
+  def JOB_NAME = env.JOB_NAME
+  def BUILD_ID= env.BUILD_ID
+
+  def JENKINS_LOG= " Failure: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
   return JENKINS_LOG
 
 }
