@@ -18,21 +18,21 @@ pipeline {
               }
             }
         }
-        // stage("Quality Gate") {
-        //     steps {
-        //     //     timeout(time: 1, unit: 'HOURS') {
-        //     //     waitForQualityGate abortPipeline: true }
+        stage("Quality Gate") {
+            steps {
+            //     timeout(time: 1, unit: 'HOURS') {
+            //     waitForQualityGate abortPipeline: true }
                 
-        //          script {
-        //                 echo "Checking Quality Gates"
-        //                 def qg = waitForQualityGate()
-        //                 if (qg.status != 'OK') {
-        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
-        //                     echo "Quality Gate status updated" 
-        //                 }
-        //         }
-        //     }
-        // }
+                 script {
+                        echo "Checking Quality Gates"
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            echo "Quality Gate status updated" 
+                        }
+                }
+            }
+        }
          stage('Build'){
             steps{
                 echo "Build"
@@ -59,24 +59,24 @@ pipeline {
 }
     post{
         success{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080//job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
         }
         failure{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "${custom_fail_msg()}")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: " Failure: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText" )
         }
     }
 }
-def custom_success_msg()
-{
-  def JENKINS_URL= "http://172.27.59.109:8080/"
-  def JOB_NAME = env.JOB_NAME
-  def BUILD_ID= env.BUILD_ID
+// def custom_success_msg()
+// {
+//   def JENKINS_URL= "http://172.27.59.109:8080/"
+//   def JOB_NAME = env.JOB_NAME
+//   def BUILD_ID= env.BUILD_ID
 
-  def JENKINS_LOG= " Success: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
-  // echo ${JENKINS_LOG}
-  return JENKINS_LOG
+//   def JENKINS_LOG= " Success: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
+//   // echo ${JENKINS_LOG}
+//   return JENKINS_LOG
 
-}
+// }
 // def custom_fail_msg()
 // {
 //   def JENKINS_URL= "http://172.27.59.109:8080/"
