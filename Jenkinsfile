@@ -73,6 +73,7 @@ def custom_success_msg()
   def BUILD_ID= env.BUILD_ID
 
   def JENKINS_LOG= " Success: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
+  echo ${JENKINS_LOG}
   return JENKINS_LOG
 
 }
