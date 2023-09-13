@@ -59,7 +59,7 @@ pipeline {
 }
     post{
         success{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: "${custom_success_msg()}")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080//job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
         }
         failure{
             slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "${custom_fail_msg()}")
@@ -77,13 +77,13 @@ def custom_success_msg()
   return JENKINS_LOG
 
 }
-def custom_fail_msg()
-{
-  def JENKINS_URL= "http://172.27.59.109:8080/"
-  def JOB_NAME = env.JOB_NAME
-  def BUILD_ID= env.BUILD_ID
+// def custom_fail_msg()
+// {
+//   def JENKINS_URL= "http://172.27.59.109:8080/"
+//   def JOB_NAME = env.JOB_NAME
+//   def BUILD_ID= env.BUILD_ID
 
-  def JENKINS_LOG= " Failure: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
-  return JENKINS_LOG
+//   def JENKINS_LOG= " Failure: Job [${env.JOB_NAME}] Logs path: ${JENKINS_URL}/job/${JOB_NAME}/${BUILD_ID}/consoleText"
+//   return JENKINS_LOG
 
-}
+// }
