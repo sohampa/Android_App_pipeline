@@ -59,10 +59,11 @@ pipeline {
 }
     post{
         success{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Successfully Build")
+            // slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Successfully Build")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
         }
-        failure{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
-        }
+        // failure{
+        //     slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
+        // }
     }
 }
