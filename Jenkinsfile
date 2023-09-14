@@ -1,4 +1,3 @@
-// comment added
 pipeline {
     environment {
         DATE = new Date().format('yy.M')
