@@ -57,12 +57,12 @@ pipeline {
             }
         }
 }
-    post{
-        success{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Successfully Build")
-        }
-        failure{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
-        }
-    }
+    // post{
+    //     success{
+    //         slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Successfully Build")
+    //     }
+    //     failure{
+    //         slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
+    //     }
+    // }
 }
