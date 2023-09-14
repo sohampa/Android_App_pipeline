@@ -18,21 +18,21 @@ pipeline {
               }
             }
         }
-        // stage("Quality Gate") {
-        //     steps {
-        //     //     timeout(time: 1, unit: 'HOURS') {
-        //     //     waitForQualityGate abortPipeline: true }
+        stage("Quality Gate") {
+            steps {
+            //     timeout(time: 1, unit: 'HOURS') {
+            //     waitForQualityGate abortPipeline: true }
                 
-        //          script {
-        //                 echo "Checking Quality Gates"
-        //                 def qg = waitForQualityGate()
-        //                 if (qg.status != 'OK') {
-        //                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
-        //                     echo "Quality Gate status updated" 
-        //                 }
-        //         }
-        //     }
-        // }
+                 script {
+                        echo "Checking Quality Gates"
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                            echo "Quality Gate status updated" 
+                        }
+                }
+            }
+        }
          stage('Build'){
             steps{
                 echo "Build"
@@ -59,10 +59,12 @@ pipeline {
 }
     post{
         success{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
+            // slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText")
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Success: Job [${env.JOB_NAME}] - Build ID-${env.BUILD_ID}")
         }
         failure{
-            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: " Failure: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText" )
+            // slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: " Failure: Job [${env.JOB_NAME}] Logs path: http://172.27.59.109:8080/job/${env.JOB_NAME}/${env.BUILD_ID}/consoleText" )
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: " Failure: Job [${env.JOB_NAME}] - Build ID-${env.BUILD_ID}")
         }
     }
 }
