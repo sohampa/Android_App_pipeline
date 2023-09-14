@@ -61,8 +61,8 @@ pipeline {
         success{
             slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "good", message: " Successfully Build")
         }
-    //     failure{
-    //         slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
-    //     }
+        failure{
+            slackSend( channel: "#poc", token: "K4xlRQw5CWXfITGrtMgPHeLX", color: "danger", message: "Alert Build Failure")
+        }
     }
 }
